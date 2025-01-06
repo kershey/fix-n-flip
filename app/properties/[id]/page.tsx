@@ -48,9 +48,9 @@ async function getPropertyData(id: string) {
 export default async function PropertyDetails({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
+  const { id } = await params;
   const property = await getPropertyData(id);
 
   return (
