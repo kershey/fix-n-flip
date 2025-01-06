@@ -45,16 +45,18 @@ async function getPropertyData(id: string) {
   };
 }
 
-// Proper type for page props
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-// Adjust component to use the correct type
-export default async function PropertyDetails({ params }: Props) {
+export default async function PropertyDetails({
+  params,
+  searchParams,
+}: PageProps) {
   const { id } = params;
-
   const property = await getPropertyData(id);
 
   return (
@@ -171,8 +173,18 @@ export default async function PropertyDetails({ params }: Props) {
               <div className="bg-gray-50 p-6 rounded-xl">
                 <h3 className="text-xl font-bold mb-4">Investment Analysis</h3>
                 <div className="space-y-4">
-                  {/* Investment fields */}
-                  {/* Render Investment Data */}
+                  {Object.entries(property.pricing).map(([key, value]) => (
+                    <div key={key} className="flex justify-between">
+                      <span className="text-gray-600 capitalize">
+                        {key.replace(/([A-Z])/g, ' $1').trim()}
+                      </span>
+                      <span className="font-bold">
+                        {typeof value === 'number'
+                          ? `$${value.toLocaleString()}`
+                          : value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
