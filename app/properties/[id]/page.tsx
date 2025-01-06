@@ -47,9 +47,8 @@ async function getPropertyData(id: string) {
 
 // Proper type for page props
 type Props = {
-  params: {
-    id: string;
-  };
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 // Adjust component to use the correct type
