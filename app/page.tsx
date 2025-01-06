@@ -32,19 +32,19 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="px-6 py-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 gap-12">
+      <section className="px-4 sm:px-6 py-8 sm:py-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <motion.div
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
             initial="initial"
             animate="animate"
             variants={stagger}
           >
             <motion.div className="space-y-4" variants={fadeInUp}>
-              <h2 className="text-5xl font-bold leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
                 Transform Houses
                 <motion.div
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 flex-wrap"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
@@ -75,7 +75,7 @@ export default function Home() {
                 </motion.div>
                 With Us.
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base sm:text-lg">
                 Join successful house flippers earning 25-40% ROI per project.
                 Start your real estate flipping journey today.
               </p>
@@ -147,12 +147,12 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="relative"
+            className="relative mt-8 md:mt-0"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4">
               <Image
                 src="/images/8.jpg"
                 alt="Before Renovation"
@@ -160,20 +160,20 @@ export default function Home() {
                 height={600}
                 className="rounded-2xl object-cover w-full h-full"
               />
-              <div className="space-y-4">
+              <div className="space-y-2 sm:space-y-4">
                 <Image
                   src="/images/9.jpg"
                   alt="During Renovation"
                   width={240}
                   height={280}
-                  className="rounded-2xl object-cover w-full h-[280px]"
+                  className="rounded-2xl object-cover w-full h-[200px] sm:h-[280px]"
                 />
                 <Image
                   src="/images/10.jpg"
                   alt="After Renovation"
                   width={240}
                   height={280}
-                  className="rounded-2xl object-cover w-full h-[280px]"
+                  className="rounded-2xl object-cover w-full h-[200px] sm:h-[280px]"
                 />
               </div>
             </div>
@@ -215,16 +215,16 @@ export default function Home() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="px-6 py-16 bg-gray-50">
+      <section className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">
               Featured Flip Opportunities
             </h2>
             <p className="text-gray-600">
@@ -233,7 +233,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
