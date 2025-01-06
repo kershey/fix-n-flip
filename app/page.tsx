@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from './components/Navigation';
 import { motion } from 'framer-motion';
+import { properties } from './data/properties';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -20,6 +21,11 @@ const stagger = {
 };
 
 export default function Home() {
+  // Get the first 3 high potential properties
+  const featuredProperties = properties
+    .filter((property) => property.status === 'High Potential')
+    .slice(0, 3);
+
   return (
     <main className="min-h-screen bg-white">
       {/* Navigation */}
@@ -233,9 +239,9 @@ export default function Home() {
             viewport={{ once: true }}
             variants={stagger}
           >
-            {[1, 2, 3].map((i) => (
+            {featuredProperties.map((property) => (
               <motion.div
-                key={i}
+                key={property.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                 variants={fadeInUp}
                 whileHover={{ y: -10 }}
@@ -243,8 +249,8 @@ export default function Home() {
               >
                 <div className="relative h-64">
                   <Image
-                    src={`/images/${i}.jpg`}
-                    alt={`Property ${i}`}
+                    src={property.image}
+                    alt={property.title}
                     fill
                     className="object-cover"
                   />
@@ -255,31 +261,30 @@ export default function Home() {
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-2">
                     <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
-                      High Potential
+                      {property.status}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold">
-                    {i === 1
-                      ? 'Modern Renovation'
-                      : i === 2
-                      ? 'Vintage Charm Revival'
-                      : 'Urban Oasis Transformation'}
-                  </h3>
-                  <p className="text-gray-600">3 bed • 2 bath • 1,800 sqft</p>
+                  <h3 className="text-xl font-bold">{property.title}</h3>
+                  <p className="text-gray-600">
+                    {property.bedrooms} bed • {property.bathrooms} bath •{' '}
+                    {property.sqft.toLocaleString()} sqft
+                  </p>
                   <div className="flex justify-between items-center">
                     <div>
                       <p className="text-gray-500">Current Price</p>
-                      <p className="text-2xl font-bold">$180,000</p>
+                      <p className="text-2xl font-bold">
+                        ${property.price.toLocaleString()}
+                      </p>
                     </div>
                     <div>
                       <p className="text-gray-500">After Repair Value</p>
                       <p className="text-2xl font-bold text-green-600">
-                        $280,000
+                        ${property.afterRepairValue.toLocaleString()}
                       </p>
                     </div>
                   </div>
                   <Link
-                    href={`/property/${i}`}
+                    href={`/properties/${property.id}`}
                     className="text-blue-600 font-medium hover:text-blue-700 transition-colors"
                   >
                     View Details →
