@@ -49,13 +49,9 @@ interface PageProps {
   params: {
     id: string;
   };
-  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default async function PropertyDetails({
-  params,
-  searchParams,
-}: PageProps) {
+export default async function PropertyDetails({ params }: PageProps) {
   const { id } = params;
   const property = await getPropertyData(id);
 
