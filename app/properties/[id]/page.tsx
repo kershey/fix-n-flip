@@ -53,7 +53,9 @@ type Props = {
 
 // Adjust component to use the correct type
 export default async function PropertyDetails({ params }: Props) {
-  const property = await getPropertyData(params.id);
+  const { id } = await params;
+
+  const property = await getPropertyData(id);
 
   return (
     <main className="min-h-screen bg-white">
