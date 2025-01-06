@@ -45,14 +45,11 @@ async function getPropertyData(id: string) {
   };
 }
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export default async function PropertyDetails({ params }: PageProps) {
+export default async function PropertyDetails({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = params;
   const property = await getPropertyData(id);
 
