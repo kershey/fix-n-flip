@@ -47,13 +47,14 @@ async function getPropertyData(id: string) {
 
 // Add proper type for page props
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
 // Ensure that the component signature matches the expected type
 export default async function PropertyDetails({ params }: Props) {
-  const property = await getPropertyData(params.id);
+  const resolvedParams = await params; // Await the promise to get the actual params object
+  const property = await getPropertyData(resolvedParams.id);
 
   return (
     <main className="min-h-screen bg-white">
