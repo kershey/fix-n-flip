@@ -53,7 +53,7 @@ type Props = {
 
 // Adjust component to use the correct type
 export default async function PropertyDetails({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
 
   const property = await getPropertyData(id);
 
