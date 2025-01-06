@@ -48,9 +48,10 @@ async function getPropertyData(id: string) {
 // Add proper type for page props
 type Props = {
   params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-// Update the component signature
+// Ensure that the component signature matches the expected type
 export default async function PropertyDetails({ params }: Props) {
   const property = await getPropertyData(params.id);
 
