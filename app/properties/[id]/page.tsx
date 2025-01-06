@@ -52,7 +52,7 @@ interface PageProps {
 }
 
 export default async function PropertyDetails({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   // Fetch property data
   const property = await getPropertyData(id);
