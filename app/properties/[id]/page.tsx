@@ -45,11 +45,14 @@ function getPropertyData(id: string) {
   };
 }
 
-export default function PropertyDetails({
-  params,
-}: {
+// Add proper type for page props
+type Props = {
   params: { id: string };
-}) {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+// Update the component signature
+export default function PropertyDetails({ params }: Props) {
   const property = getPropertyData(params.id);
 
   return (
