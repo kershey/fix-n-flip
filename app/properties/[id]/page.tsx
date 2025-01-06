@@ -3,7 +3,7 @@ import Navigation from '../../components/Navigation';
 import Link from 'next/link';
 
 // This is a mock data function - in a real app, this would fetch from an API
-function getPropertyData(id: string) {
+async function getPropertyData(id: string) {
   return {
     id,
     title: 'Vintage Charm Revival',
@@ -48,12 +48,11 @@ function getPropertyData(id: string) {
 // Add proper type for page props
 type Props = {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 // Update the component signature
-export default function PropertyDetails({ params }: Props) {
-  const property = getPropertyData(params.id);
+export default async function PropertyDetails({ params }: Props) {
+  const property = await getPropertyData(params.id);
 
   return (
     <main className="min-h-screen bg-white">
