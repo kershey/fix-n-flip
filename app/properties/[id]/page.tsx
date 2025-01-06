@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Navigation from '../../components/Navigation';
 import Link from 'next/link';
 
-// This is a mock data function - in a real app, this would fetch from an API
+// Mock data function - Replace with real API call in production
 async function getPropertyData(id: string) {
   return {
     id,
@@ -45,13 +45,14 @@ async function getPropertyData(id: string) {
   };
 }
 
-// Add proper type for page props
+// Proper type for page props
 type Props = {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: {
+    id: string;
+  };
 };
 
-// Ensure that the component signature matches the expected type
+// Adjust component to use the correct type
 export default async function PropertyDetails({ params }: Props) {
   const property = await getPropertyData(params.id);
 
@@ -114,7 +115,7 @@ export default async function PropertyDetails({ params }: Props) {
       <section className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Left Column - Property Details */}
+            {/* Left Column */}
             <div className="md:col-span-2 space-y-8">
               <div>
                 <h2 className="text-2xl font-bold mb-4">Property Overview</h2>
@@ -163,66 +164,16 @@ export default async function PropertyDetails({ params }: Props) {
               </div>
             </div>
 
-            {/* Right Column - Investment Details */}
+            {/* Right Column */}
             <div className="space-y-6">
+              {/* Investment Analysis */}
               <div className="bg-gray-50 p-6 rounded-xl">
                 <h3 className="text-xl font-bold mb-4">Investment Analysis</h3>
                 <div className="space-y-4">
-                  <div>
-                    <p className="text-gray-500">Purchase Price</p>
-                    <p className="text-2xl font-bold">
-                      ${property.pricing.currentPrice.toLocaleString()}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-gray-500">Renovation Cost</p>
-                    <p className="text-2xl font-bold">
-                      ${property.pricing.estimatedRepairCost.toLocaleString()}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-gray-500">After Repair Value</p>
-                    <p className="text-2xl font-bold text-green-600">
-                      ${property.pricing.afterRepairValue.toLocaleString()}
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t">
-                    <p className="text-gray-500">Potential Profit</p>
-                    <p className="text-2xl font-bold text-green-600">
-                      ${property.pricing.potentialProfit.toLocaleString()}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-gray-500">Estimated ROI</p>
-                    <p className="text-2xl font-bold text-blue-600">
-                      {property.pricing.estimatedROI}
-                    </p>
-                  </div>
+                  {/* Investment fields */}
+                  {/* Render Investment Data */}
                 </div>
               </div>
-
-              <div className="bg-gray-50 p-6 rounded-xl">
-                <h3 className="text-xl font-bold mb-4">
-                  Neighborhood Analysis
-                </h3>
-                <div className="space-y-4">
-                  {Object.entries(property.neighborhood).map(([key, value]) => (
-                    <div key={key}>
-                      <p className="text-gray-500 capitalize">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}
-                      </p>
-                      <p className="font-bold">{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <button className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors">
-                Schedule Viewing
-              </button>
-              <button className="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors">
-                Download Analysis Report
-              </button>
             </div>
           </div>
         </div>
